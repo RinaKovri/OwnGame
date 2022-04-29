@@ -22,40 +22,23 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            anim.SetBool("Run", true);
-        }
-        else
-        {
-            anim.SetBool("Run", false);
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            anim.SetTrigger("attack");
-            //dirtParticle.Stop();
-            //playerAudio.PlayOneShot(attackSound, 1.0f);
-        }
+    {  
+           
     }
+        
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("PickUp"))
         {
-            anim.SetTrigger("pickUp");
             Destroy(other.gameObject);
-        }
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            anim.SetBool("dead", true);
             //explosionParticle.Play();
-            //dirtParticle.Stop();
+        }
+    
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+            anim.SetTrigger("dead");
             Debug.Log("Game Over");
             gameOver = true;
-            //playerAudio.PlayOneShot(crashSound, 1.0f);
         }
     }
 }

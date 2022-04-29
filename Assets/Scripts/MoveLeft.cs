@@ -20,12 +20,11 @@ public class MoveLeft : MonoBehaviour
     void Update()
     {
         // If game is not over, move to the left
-        if (Input.GetKey(KeyCode.RightArrow) && !gameOver)
+        if(playerControllerScript.gameOver == false)
         {
             transform.Translate(Vector3.left * speed * Time.deltaTime);
         }
-
-        // If object goes off screen that is NOT the background, destroy it
+        // If object goes off screen that is not the background, destroy it
         if (transform.position.z < leftBound && !gameObject.CompareTag("Background"))
         {
             Destroy(gameObject);
