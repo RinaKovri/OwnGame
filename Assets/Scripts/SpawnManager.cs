@@ -7,6 +7,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject obstaclePrefab;
     public GameObject pickUpPrefab;
     private Vector3 spawnPos = new Vector3(0, 0, 30);
+    private Vector3 spawnPos1 = new Vector3(0, 5, 20);
     private float startDelay = 2;
     private float repeatRate = 2;
     private PlayerController playerControllerScript;
@@ -37,7 +38,7 @@ public class SpawnManager : MonoBehaviour
     {
         if (playerControllerScript.gameOver == false)
         {
-            Instantiate(pickUpPrefab, spawnPos, pickUpPrefab.transform.rotation);
+            Instantiate(pickUpPrefab, spawnPos1, pickUpPrefab.transform.rotation);
         }
     }
 }

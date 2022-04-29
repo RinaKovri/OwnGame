@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move : MonoBehaviour
+public class MoveLeft : MonoBehaviour
 {
     public float speed;
     private PlayerController playerControllerScript;
     public bool gameOver = false;
-    private float leftBound = -10;
+    private float leftBound = -28;
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,17 +26,18 @@ public class Move : MonoBehaviour
         }
 
         // If object goes off screen that is NOT the background, destroy it
-        if (transform.position.x < leftBound && !gameObject.CompareTag("Background"))   
+        if (transform.position.z < leftBound && !gameObject.CompareTag("Background"))
         {
             Destroy(gameObject);
         }
-        if (transform.position.x < leftBound && !gameObject.CompareTag("Obstacle"))
+        if (transform.position.z < leftBound && !gameObject.CompareTag("Obstacle"))
         {
             Destroy(gameObject);
         }
-        if (transform.position.x < leftBound && !gameObject.CompareTag("PickUp"))
+        if (transform.position.z < leftBound && !gameObject.CompareTag("PickUp"))
         {
             Destroy(gameObject);
         }
     }
 }
+

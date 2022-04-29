@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8826600216605313383}
   - component: {fileID: 8826600216605313382}
   - component: {fileID: 8826600216605313381}
-  - component: {fileID: -6278320733798248824}
+  - component: {fileID: 5544892385535666012}
   m_Layer: 0
   m_Name: Obstacle
   m_TagString: Obstacle
@@ -82,7 +82,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-6278320733798248824
+--- !u!114 &5544892385535666012
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8826600216605313380}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 962a10083d1074925b9641f7dc0a45fc, type: 3}
+  m_Script: {fileID: 11500000, guid: ecf42d12ec468418fb50bb1712518bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
