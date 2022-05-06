@@ -4,41 +4,31 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject obstaclePrefab;
-    public GameObject pickUpPrefab;
-    private Vector3 spawnPos = new Vector3(1.8f, 0.1f, 30);
-    private Vector3 spawnPos1 = new Vector3(1.2f, 2, 20);
-    private float startDelay = 2;
-    private float repeatRate = 2;
+    public GameObject[] pickupPrefabs;
+    private float spawnDelay = 2;
+    private float spawnInterval = 1.5f;
     private PlayerController playerControllerScript;
+    public GameObject player;
+    
+
 
     // Start is called before the first frame update
     void Start()
     {
+        InvokeRepeating("SpawnObjects", spawnDelay, spawnInterval);
         playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
-        InvokeRepeating("SpawnObstacle", startDelay, repeatRate);
-        InvokeRepeating("SpawnPickUp", startDelay, repeatRate);
     }
 
     // Update is called once per frame
-    void Update()
+    void SpawnObjects()
     {
+        Vector3 spawnPos = new Vector3(Random.Range(1.3f, -1.3f), 1, Random.Range(-354f, player.transform.position.z));
+        int index = Random.Range(0, pickupPrefabs.Length);
 
-    }
-
-
-    void SpawnObstacle()
-    {
-        if (playerControllerScript.gameOver == false)
+        if (!playerControllerScript.gameOver)
         {
-            Instantiate(obstaclePrefab, spawnPos, obstaclePrefab.transform.rotation);
+            Instantiate(pickupPrefabs[index], spawnPos, pickupPrefabs[index].transform.rotation);
         }
-    }
-    void SpawnPickUp()
-    {
-        if (playerControllerScript.gameOver == false)
-        {
-            Instantiate(pickUpPrefab, spawnPos1, pickUpPrefab.transform.rotation);
-        }
+
     }
 }

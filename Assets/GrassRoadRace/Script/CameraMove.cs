@@ -4,6 +4,7 @@ using System.Collections;
 
 public class CameraMove : MonoBehaviour {
 
+	private GameManager gameManager;
 	public float moveSpeed;
 	public GameObject mainCamera;
 
@@ -11,7 +12,7 @@ public class CameraMove : MonoBehaviour {
 	void Start () {
 		mainCamera.transform.localPosition = new Vector3 ( 0, 0, 0 );
 		mainCamera.transform.localRotation = Quaternion.Euler (18, 180, 0);
-	
+		gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 	}
 	
 	// Update is called once per frame
@@ -34,9 +35,12 @@ public class CameraMove : MonoBehaviour {
 	}
 	
 	
-	void MoveObj() {		
-		float moveAmount = Time.smoothDeltaTime * moveSpeed;
-		transform.Translate ( 0f, 0f, moveAmount );	
+	void MoveObj() {
+		if (gameManager.isGameActive)
+        {
+			float moveAmount = Time.smoothDeltaTime * moveSpeed;
+			transform.Translate(0f, 0f, moveAmount);
+		}	
 	}
 
 

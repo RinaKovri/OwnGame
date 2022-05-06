@@ -8,21 +8,27 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI gameOverText;
     public GameObject titleScreen;
     public Button startButton;
     private int score;
     public bool isGameActive;
+    GameObject player;
 
+    void Start()
+    {
+        
+    }
+    
     // 
-    public void StartGame(int difficulty)
+    public void StartGame()
     {
         isGameActive = true;    
+        titleScreen.SetActive(false);
         score = 0;
         UpdateScore(0);
         titleScreen.SetActive(false);
     }
-
-
     // 
     public void UpdateScore(int scoreToAdd)
     {
@@ -31,8 +37,9 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
-        startButton.gameObject.SetActive(true);
-        isGameActive = false;
+            gameOverText.gameObject.SetActive(true);
+            startButton.gameObject.SetActive(true);
+            isGameActive = false;
     }
 
 }
