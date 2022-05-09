@@ -6,37 +6,51 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject player;
     private GameManager gameManager;
-    public bool gameOver;
     public Animation anim;
-    private Rigidbody rb;
+    Rigidbody rb;
     private AudioSource playerAudio;
+    public AudioClip pickupSound;
+    public Vector3 jump;
+
     public float moveSpeed;
     public float jumpForce;
-    public AudioClip pickupSound;
     public float xRange;
     public float xRange1;
+
     public int pointValue;
+
+    public bool gameOver;
+    public bool isGrounded;
+
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        //rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
+        jump = new Vector3(0.0f, 2.0f, 0.0f);
         anim = GetComponent<Animation>();
-        //foreach (AnimationState Idle in anim)
-        //{
-        //    Idle.speed = 0.5f;
-        //}
+        anim.Play("Idle");
         playerAudio = GetComponent<AudioSource>();
+    }
+
+    private void OnCollisionStay()
+    {
+        isGrounded = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.isGameActive) {
+        isGrounded = player.transform.position.y < 0.15;
+        if (gameManager.isGameActive)
+        {
+            Move();
             float horizontalInput = Input.GetAxis("Horizontal");
-        transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * moveSpeed);
-        Move();
+            transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * moveSpeed);
+       
         if (transform.position.x > xRange)
         {
             transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
@@ -44,34 +58,29 @@ public class PlayerController : MonoBehaviour
             if (transform.position.x < xRange1)
         {
             transform.position = new Vector3(xRange1, transform.position.y, transform.position.z);
-        }
+        } 
         }
     }
+
 
     void Move()
     {
         if (gameManager.isGameActive)
         {
-            //foreach (AnimationState Run in anim)
-            //{
-            //    Run.speed = 0.5f;
-            //}
+            
             transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
-            //if (transform.position.z < -354) 
-            //{
-            //    gameManager.GameOver();
-            //}
 
-            //if (Input.GetKeyDown(KeyCode.Space))
-            //{
-            //    foreach (AnimationState Runtojumpspring in anim)
-            //    {
-            //        Runtojumpspring.speed = 0.5f;
-            //    }
-
-            //rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
-            //}
+            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+            {
+                anim.Play("Runtojumpspring");
+                rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+                isGrounded = false;
+            }
         }
+        if (isGrounded) {
+            //anim.Play("Run");
+        }
+    
     }
 
     private void OnTriggerEnter(Collider other)
