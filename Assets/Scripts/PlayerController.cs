@@ -6,7 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject player;
     private GameManager gameManager;
-    public Animation anim;
+    //public Animation anim;
+    public Animator anim;
     Rigidbody rb;
     private AudioSource playerAudio;
     public AudioClip pickupSound;
@@ -31,8 +32,8 @@ public class PlayerController : MonoBehaviour
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         rb = GetComponent<Rigidbody>();
         jump = new Vector3(0.0f, 2.0f, 0.0f);
-        anim = GetComponent<Animation>();
-        anim.Play("Idle");
+        //anim = GetComponent<Animation>();
+        anim = GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
     }
 
@@ -72,13 +73,15 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
             {
-                anim.Play("Runtojumpspring");
+                //anim.Play("Runtojumpspring");
+                anim.SetTrigger("Jump");
                 rb.AddForce(jump * jumpForce, ForceMode.Impulse);
                 isGrounded = false;
             }
         }
         if (isGrounded) {
             //anim.Play("Run");
+            anim.SetBool("Run", true);
         }
     
     }
@@ -87,6 +90,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PickUp"))
         {
+            anim.SetTrigger("Pickup");
             Destroy(other.gameObject);
             gameManager.UpdateScore(pointValue);
             playerAudio.PlayOneShot(pickupSound, 1.0f);
