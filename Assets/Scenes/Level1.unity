@@ -198,6 +198,7 @@ MonoBehaviour:
   - {fileID: 2342947331098939431, guid: c1d4aa6a99dbc4c928d7a07191ef9b4f, type: 3}
   - {fileID: 4371972907302125176, guid: a4b07b6b74b7b4f8281126c519e6c7bf, type: 3}
   player: {fileID: 1968476996867191}
+  zPos: -356
 --- !u!4 &29575234
 Transform:
   m_ObjectHideFlags: 0
@@ -4753,7 +4754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 895815838}
-  gameOverText: {fileID: 397701970}
+  winText: {fileID: 0}
   titleScreen: {fileID: 1192350971}
   startButton: {fileID: 466456298}
   isGameActive: 0

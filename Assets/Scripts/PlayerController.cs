@@ -10,16 +10,13 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     private AudioSource playerAudio;
     public AudioClip pickupSound;
-    public Vector3 jump;
 
     public float moveSpeed;
-    public float jumpForce;
     public float xRange;
     public float xRange1;
 
     public int pointValue;
 
-    public bool gameOver;
     public bool isGrounded;
 
 
@@ -30,12 +27,11 @@ public class PlayerController : MonoBehaviour
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         rb = GetComponent<Rigidbody>();
-        jump = new Vector3(0.0f, 2.0f, 0.0f);
         anim = GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
     }
 
-    private void OnCollisionStay()
+    private void OnCollisionEnter()
     {
         isGrounded = true;
     }
@@ -43,7 +39,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isGrounded = player.transform.position.y < 0.15;
         if (gameManager.isGameActive)
         {
             Move();
@@ -57,7 +52,11 @@ public class PlayerController : MonoBehaviour
             if (transform.position.x < xRange1)
         {
             transform.position = new Vector3(xRange1, transform.position.y, transform.position.z);
-        } 
+        }
+            if(transform.position.y < 0)
+            {
+                gameManager.RestartGame();
+            }
         }
     }
 
@@ -71,9 +70,9 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
             {
-                anim.SetTrigger("Jump");
-                rb.AddForce(jump * jumpForce, ForceMode.Impulse);
                 isGrounded = false;
+                anim.SetTrigger("Jump");
+                rb.AddForce(new Vector3(0, 500, 0));
             }
         }
         if (isGrounded)
@@ -90,6 +89,16 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             gameManager.UpdateScore(pointValue);
             playerAudio.PlayOneShot(pickupSound, 1.0f);
+        }
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+            anim.SetBool("Run", false);
+            gameManager.RestartGame();
+        }
+        if (other.gameObject.CompareTag("Win"))
+        {
+            anim.SetBool("Run", false);
+            gameManager.GameOver();
         }
     }
 }

@@ -8,12 +8,13 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI gameOverText;
+    public TextMeshProUGUI winText;
     public GameObject titleScreen;
+    public GameObject restartScreen;
     public Button startButton;
+    public Button restartButton;
     private int score;
     public bool isGameActive;
-    GameObject player;
 
     void Start()
     {
@@ -25,9 +26,9 @@ public class GameManager : MonoBehaviour
     {
         isGameActive = true;    
         titleScreen.SetActive(false);
+        restartScreen.SetActive(false);
         score = 0;
         UpdateScore(0);
-        titleScreen.SetActive(false);
     }
     // 
     public void UpdateScore(int scoreToAdd)
@@ -37,9 +38,13 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
-            gameOverText.gameObject.SetActive(true);
-            startButton.gameObject.SetActive(true);
-            isGameActive = false;
+         winText.gameObject.SetActive(true);
+         isGameActive = false;
+    }
+    public void RestartGame()
+    {
+        restartScreen.SetActive(true);
+        isGameActive = false;
     }
 
 }
