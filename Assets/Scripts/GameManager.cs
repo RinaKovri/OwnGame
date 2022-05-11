@@ -11,9 +11,12 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI winText;
     public GameObject titleScreen;
     public GameObject restartScreen;
+    public GameObject nextLevelScreen;
     public Button startButton;
     public Button restartButton;
+    public Button nextLevelButton;
     private int score;
+    public int level;
     public bool isGameActive;
 
     void Start()
@@ -26,7 +29,6 @@ public class GameManager : MonoBehaviour
     {
         isGameActive = true;    
         titleScreen.SetActive(false);
-        restartScreen.SetActive(false);
         score = 0;
         UpdateScore(0);
     }
@@ -36,6 +38,11 @@ public class GameManager : MonoBehaviour
         score += scoreToAdd;
         scoreText.text = "Score:" + score;
     }
+    public void NextLevel()
+    {
+        // load the nextlevel
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
     public void GameOver()
     {
          winText.gameObject.SetActive(true);
@@ -43,8 +50,7 @@ public class GameManager : MonoBehaviour
     }
     public void RestartGame()
     {
-        restartScreen.SetActive(true);
-        isGameActive = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }

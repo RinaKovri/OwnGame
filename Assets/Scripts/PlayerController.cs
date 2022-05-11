@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isGrounded = player.transform.position.y < 0.15;
         if (gameManager.isGameActive)
         {
             Move();
@@ -55,7 +56,8 @@ public class PlayerController : MonoBehaviour
         }
             if(transform.position.y < 0)
             {
-                gameManager.RestartGame();
+                gameManager.isGameActive = false;
+                gameManager.restartScreen.SetActive(true);
             }
         }
     }
@@ -93,12 +95,20 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Obstacle"))
         {
             anim.SetBool("Run", false);
-            gameManager.RestartGame();
+            gameManager.isGameActive = false;
+            gameManager.restartScreen.SetActive(true);
         }
         if (other.gameObject.CompareTag("Win"))
         {
             anim.SetBool("Run", false);
-            gameManager.GameOver();
+            gameManager.isGameActive = false;
+            gameManager.nextLevelScreen.SetActive(true);
+        }
+        if (other.gameObject.CompareTag("Finish"))
+        {
+            anim.SetBool("Run", false);
+            gameManager.isGameActive = false;
+            gameManager.winText.gameObject.SetActive(true);
         }
     }
 }
