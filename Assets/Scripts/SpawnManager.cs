@@ -6,9 +6,10 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject[] pickupPrefabs;
     private GameManager gameManager;
+    public GameObject player;
+
     private float spawnDelay = 2;
     private float spawnInterval = 1.5f;
-    public GameObject player;
     public float zPos;
     
 
@@ -23,7 +24,7 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void SpawnObjects()
     {
-        Vector3 spawnPos = new Vector3(Random.Range(1f, -1f), Random.Range(1.5f, 3f), Random.Range(player.transform.position.z - 5, zPos));
+        Vector3 spawnPos = new Vector3(Random.Range(1f, -1f), Random.Range(1.5f, 3f), Random.Range(player.transform.position.z - 5, zPos));//objects appear only within the boundaries of the road
         int index = Random.Range(0, pickupPrefabs.Length);
 
         if (gameManager.isGameActive)

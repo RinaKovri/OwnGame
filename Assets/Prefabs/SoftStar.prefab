@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 49607318535223041}
   - component: {fileID: 7495444548622914950}
   - component: {fileID: -5146126244416422583}
+  - component: {fileID: -6642331586274716409}
   m_Layer: 0
   m_Name: SoftStar
   m_TagString: PickUp
@@ -91,7 +92,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 82949899352495115}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ff967b7ed48f2441bcf509edf6b889a, type: 3}
   m_Name: 
@@ -137,3 +138,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.8780403, y: 0.44943988, z: 1.8318225}
   m_Center: {x: 0.03630829, y: -0.00041776896, z: 0.13683003}
+--- !u!114 &-6642331586274716409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82949899352495115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ff967b7ed48f2441bcf509edf6b889a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAnimated: 0
+  isRotating: 0
+  isFloating: 0
+  isScaling: 0
+  rotationAngle: {x: 0, y: 0, z: 0}
+  rotationSpeed: 0
+  floatSpeed: 0
+  floatRate: 0
+  startScale: {x: 0, y: 0, z: 0}
+  endScale: {x: 0, y: 0, z: 0}
+  scaleSpeed: 0
+  scaleRate: 0

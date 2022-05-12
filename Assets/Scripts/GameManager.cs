@@ -15,8 +15,10 @@ public class GameManager : MonoBehaviour
     public Button startButton;
     public Button restartButton;
     public Button nextLevelButton;
+
     private int score;
     public int level;
+
     public bool isGameActive;
 
     void Start()
@@ -24,31 +26,30 @@ public class GameManager : MonoBehaviour
         
     }
     
-    // 
-    public void StartGame()
+    
+    public void StartGame()//when the start button is clicked
     {
         isGameActive = true;    
         titleScreen.SetActive(false);
         score = 0;
         UpdateScore(0);
     }
-    // 
-    public void UpdateScore(int scoreToAdd)
+    
+    public void UpdateScore(int scoreToAdd)//the score's updating
     {
         score += scoreToAdd;
         scoreText.text = "Score:" + score;
     }
-    public void NextLevel()
+    public void NextLevel()// load the nextlevel
     {
-        // load the nextlevel
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-    public void GameOver()
+    public void GameOver()//when the Player collides with obstacles or falls off the road
     {
          winText.gameObject.SetActive(true);
          isGameActive = false;
     }
-    public void RestartGame()
+    public void RestartGame()//when the restart button is clicked
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

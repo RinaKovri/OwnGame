@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -21,10 +19,7 @@ public class StartButton : MonoBehaviour
         button.onClick.AddListener(SetStart);
     }
 
-    // When a button was clicked, call the StartGame() method
-     
-    
-    void SetStart()
+    void SetStart()// When a button was clicked, call the StartGame() method
     {
         Debug.Log(button.gameObject.name + " was clicked ");
         gameManager.StartGame();
