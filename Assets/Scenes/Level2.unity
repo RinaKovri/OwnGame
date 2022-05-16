@@ -2212,7 +2212,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.32694018, g: 0.77760875, b: 0.8773585, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -7467,10 +7467,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 96988695961248641, guid: 7a2d5a9fb5a8a42aba9a3bbe90026ed1, type: 3}
+      propertyPath: winSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 1c0f9af42b28b48d5a22e9653614a967, type: 3}
+    - target: {fileID: 96988695961248641, guid: 7a2d5a9fb5a8a42aba9a3bbe90026ed1, type: 3}
+      propertyPath: fallSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 53dc8d17437094c7ca5a792209a9db2f, type: 3}
+    - target: {fileID: 96988695961248641, guid: 7a2d5a9fb5a8a42aba9a3bbe90026ed1, type: 3}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d2e675d6622d24295abe6c09d92ecf38, type: 3}
+    - target: {fileID: 96988695961248641, guid: 7a2d5a9fb5a8a42aba9a3bbe90026ed1, type: 3}
+      propertyPath: crashSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 463033e859fe34c8e83e638cd6a9e6d8, type: 3}
     - target: {fileID: 96988695961248642, guid: 7a2d5a9fb5a8a42aba9a3bbe90026ed1, type: 3}
       propertyPath: m_Constraints
       value: 112
       objectReference: {fileID: 0}
+    - target: {fileID: 96988695961248643, guid: 7a2d5a9fb5a8a42aba9a3bbe90026ed1, type: 3}
+      propertyPath: m_Volume
+      value: 0.292
+      objectReference: {fileID: 0}
+    - target: {fileID: 96988695961248643, guid: 7a2d5a9fb5a8a42aba9a3bbe90026ed1, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4095dfdc998ad4db4a6ae286a067e285, type: 3}
     - target: {fileID: 98635974586401959, guid: 7a2d5a9fb5a8a42aba9a3bbe90026ed1, type: 3}
       propertyPath: m_Name
       value: Player
@@ -9092,7 +9116,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -17, y: -107}
+  m_AnchoredPosition: {x: -17, y: -30}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2109712097
@@ -9137,13 +9161,13 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
+  m_TextStyleHashCode: 97690656
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 66
-  m_fontSizeBase: 66
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -9178,7 +9202,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -97.74484, y: 0, z: -239.8222, w: 0}
+  m_margin: {x: -192.2146, y: 0, z: -441.69305, w: -99.57941}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

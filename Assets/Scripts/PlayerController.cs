@@ -10,6 +10,10 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     private AudioSource playerAudio;
     public AudioClip pickupSound;
+    public AudioClip fallSound;
+    public AudioClip jumpSound;
+    public AudioClip winSound;
+    public AudioClip crashSound;
 
     public float moveSpeed;
     public float xRange;
@@ -44,7 +48,11 @@ public class PlayerController : MonoBehaviour
         {
             Move();
             float horizontalInput = Input.GetAxis("Horizontal");
-            transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * moveSpeed);
+            if (isGrounded)
+            {
+                transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * moveSpeed);
+            }
+            
 
         //make the Player not go out the boards of the road
         if (transform.position.x > xRange)
@@ -57,6 +65,7 @@ public class PlayerController : MonoBehaviour
         }
         if(transform.position.y < 0)//stop the game when the player falls off the road
             {
+                playerAudio.PlayOneShot(fallSound, 1.0f);
                 gameManager.isGameActive = false;
                 gameManager.restartScreen.SetActive(true);
             }
@@ -76,6 +85,7 @@ public class PlayerController : MonoBehaviour
                 isGrounded = false;
                 anim.SetTrigger("Jump");
                 rb.AddForce(new Vector3(0, 600, 0));
+                playerAudio.PlayOneShot(jumpSound, 1.0f);
             }
         }
         if (isGrounded)//turn on Run animation every time when the Player is on the ground
@@ -98,18 +108,21 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("Run", false);
             gameManager.isGameActive = false;
             gameManager.restartScreen.SetActive(true);
+            playerAudio.PlayOneShot(crashSound, 1.0f);
         }
         if (other.gameObject.CompareTag("Win"))//stop the level when the Player reaches the end of the road
         {
             anim.SetBool("Run", false);
             gameManager.isGameActive = false;
             gameManager.nextLevelScreen.SetActive(true);
+            playerAudio.PlayOneShot(winSound, 2.0f);
         }
         if (other.gameObject.CompareTag("Finish"))//stop the game when the Player reaches the end of the road
         {
             anim.SetBool("Run", false);
             gameManager.isGameActive = false;
             gameManager.winText.gameObject.SetActive(true);
+            playerAudio.PlayOneShot(winSound, 2.0f);
         }
     }
 }
