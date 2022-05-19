@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip jumpSound;
     public AudioClip winSound;
     public AudioClip crashSound;
+    public AudioClip finishSound;
 
     public float moveSpeed;
     public float xRange;
@@ -52,18 +53,18 @@ public class PlayerController : MonoBehaviour
             {
                 transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * moveSpeed);
             }
-            
 
-        //make the Player not go out the boards of the road
-        if (transform.position.x > xRange)
-        {
-            transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
-        }
-        if (transform.position.x < xRange1)
-        {
-            transform.position = new Vector3(xRange1, transform.position.y, transform.position.z);
-        }
-        if(transform.position.y < 0)//stop the game when the player falls off the road
+
+            //make the Player not go out the boards of the road
+            if (transform.position.x > xRange)
+            {
+                transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
+            }
+            if (transform.position.x < xRange1)
+            {
+                transform.position = new Vector3(xRange1, transform.position.y, transform.position.z);
+            }
+            if (transform.position.y < 0)//stop the game when the player falls off the road
             {
                 playerAudio.PlayOneShot(fallSound, 1.0f);
                 gameManager.isGameActive = false;
@@ -77,7 +78,7 @@ public class PlayerController : MonoBehaviour
     {
         if (gameManager.isGameActive)
         {
-            
+
             transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
 
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded)//Player's jumping
@@ -92,7 +93,7 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("Run", true);
         }
-    
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -121,8 +122,8 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("Run", false);
             gameManager.isGameActive = false;
-            gameManager.winText.gameObject.SetActive(true);
-            playerAudio.PlayOneShot(winSound, 2.0f);
+            gameManager.winScreen.gameObject.SetActive(true);
+            playerAudio.PlayOneShot(finishSound, 2.0f);
         }
     }
 }
