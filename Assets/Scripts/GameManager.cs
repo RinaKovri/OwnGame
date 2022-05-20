@@ -46,7 +46,6 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()//when the Player collides with obstacles or falls off the road
     {
-        winScreen.gameObject.SetActive(true);
         isGameActive = false;
     }
     public void RestartGame()//when the restart button is clicked

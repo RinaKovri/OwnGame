@@ -107,21 +107,21 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Obstacle"))//stop the game when the Player collides with obstacles
         {
             anim.SetBool("Run", false);
-            gameManager.isGameActive = false;
+            gameManager.GameOver();
             gameManager.restartScreen.SetActive(true);
             playerAudio.PlayOneShot(crashSound, 1.0f);
         }
         if (other.gameObject.CompareTag("Win"))//stop the level when the Player reaches the end of the road
         {
             anim.SetBool("Run", false);
-            gameManager.isGameActive = false;
+            gameManager.GameOver();
             gameManager.nextLevelScreen.SetActive(true);
             playerAudio.PlayOneShot(winSound, 2.0f);
         }
         if (other.gameObject.CompareTag("Finish"))//stop the game when the Player reaches the end of the road
         {
             anim.SetBool("Run", false);
-            gameManager.isGameActive = false;
+            gameManager.GameOver();
             gameManager.winScreen.gameObject.SetActive(true);
             playerAudio.PlayOneShot(finishSound, 2.0f);
         }
